@@ -241,8 +241,9 @@ public class SimpleRelocator implements Relocator {
                         .matcher(previousSnippetOneLine)
                         .find();
                 boolean shouldExclude = doExclude || afterDotSlashSpace && !afterJavaKeyWord;
+                String pattern = shouldExclude ? patternFrom : patternTo;
                 shadedSourceContent
-                        .append(shouldExclude ? patternFrom : patternTo)
+                        .append(pattern.replaceAll("\\\\", ""))
                         .append(snippet);
             }
         }
